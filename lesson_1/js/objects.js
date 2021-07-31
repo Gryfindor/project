@@ -1,6 +1,6 @@
 "use strict";
 
-let number = '4.6'; // number
+let number = 4.6; // number
 
 console.log(4/0); // Infinity
 console.log('name' * 9); // Not a Number (NaN)
