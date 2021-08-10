@@ -13,6 +13,9 @@ console.log(logg.slice(0, -3));
 console.log(logg.substring(7, 10));
 console.log(logg.substr(3, 5));
 
+const longString = "the long word yeeet he";
+console.log(longString.slice(0, 20));
+
 const num = 12.2;
 console.log(Math.round(num));
 
