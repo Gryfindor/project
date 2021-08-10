@@ -49,17 +49,7 @@ const adv = document.querySelector('.promo__adv'),
       promoList = document.querySelector('.promo__interactive-list'),
       input = document.querySelector('.adding__input'),
       acceptButton = document.querySelector('button'),
-      
-      inputs = document.querySelectorAll('input');
-
-
-let favouriteFilm;
-
-inputs.forEach((item, i) => {
-    if (item.type == "checkbox") {
-        favouriteFilm = item;
-    }
-});
+      favouriteFilm = document.querySelector('[type="checkbox"]');
 
 
 const path = "'img/bg.jpg'";
@@ -89,9 +79,9 @@ console.log(promoList);
 
 
 const movie = {
-    movieShow: () => {
-        promoList.innerHTML = "";
-        movieDB.movies.sort().forEach((item, i) => {
+    movieShow: (filmList, parent) => {
+        parent.innerHTML = "";
+        filmList.sort().forEach((item, i) => {
             promoList.innerHTML += `
                 <li class="promo__interactive-item"> ${i + 1}. ${item} 
                     <div class="delete" data-index="${i + 1}"></div>
@@ -100,11 +90,11 @@ const movie = {
         });
     },
     movieAdd: () => {
-        movie.movieShow();
+        movie.movieShow(movieDB.movies, promoList);
         movie.movieRemove();
     },
     movieRemove: () => {
-        movie.movieShow();
+        movie.movieShow(movieDB.movies, promoList);
         document.querySelectorAll(".delete").forEach((item) => {
             item.addEventListener('click', (event) => {
                 
@@ -115,14 +105,14 @@ const movie = {
                 }
                 
                 console.log(movieDB.movies);
-                movie.movieShow();
+                movie.movieShow(movieDB.movies, promoList);
                 movie.movieRemove();
             });        
         });
     }
 };
 
-movie.movieShow();
+movie.movieShow(movieDB.movies, promoList);
 
 //const rubbishButtons = document.querySelectorAll('.delete');
 //console.log(rubbishButtons);
