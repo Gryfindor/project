@@ -143,5 +143,47 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', showModalbyScroll);
+
+    // MenuItems
+    const container = document.querySelector('.menu__field').firstElementChild;
+    container.innerHTML = "";
+
+    class MenuItem {
+        constructor(title, description, price, img, alt, parentSelector, ...classes) {
+            this.title = title;
+            this.description = description;
+            this.price = price;
+            this.img = img;
+            this.alt = alt;
+            this.parent = parentSelector;
+            this.classes = classes;
+        }
+
+        render() {
+            this.classes.forEach(className => this.parent.classList.add(className));
+            this.parent.innerHTML += `
+                <div class="menu__item">
+                    <img src="img/tabs/${this.img.toLowerCase()}" alt="${this.alt}">
+                    <h3 class="menu__item-subtitle">${this.title}</h3>
+                    <div class="menu__item-descr">${this.description}</div>
+                    <div class="menu__item-divider"></div>
+                    <div class="menu__item-price">
+                        <div class="menu__item-cost">Цена:</div>
+                        <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+                    </div>
+                </div>`;
+        }        
+    }
+
+    const firstDesc = 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!';
+    const secondDesc = 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!';
+    const thirdDesc = 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.';
+
+
+    new MenuItem('Меню "Фитнес"', firstDesc, '229', 'vegy.jpg', 'vegy', container, 'big').render();
+    new MenuItem('Меню “Премиум”', secondDesc, '550', 'elite.jpg', 'elite', container, 'big').render();
+    new MenuItem('Меню "Постное"', thirdDesc, '430', 'post.jpg', 'post', container, 'big').render();
+    
+
 });
 
